@@ -1,49 +1,60 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+const reviews = [
+  { name: "Sophie M.", quote: "A placeholder review — the packaging alone made the moment feel extraordinary.", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=220&q=80" },
+  { name: "Léon D.", quote: "A placeholder review — it felt less like a gift, more like holding a memory.", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=220&q=80" },
+  { name: "Camille R.", quote: "A placeholder review — delicate, personal, and beautifully considered.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=220&q=80" },
+];
+
+const faqs = ["How does personalization work?", "How long will my order take?", "Where do you deliver?", "Can I return a personalized piece?", "What photo should I choose?", "What is it made from?"];
+
+function Arrow() { return <span className="arrow">↗</span>; }
+
 export default function Home() {
+  const [menu, setMenu] = useState(false);
+  const [cart, setCart] = useState(false);
+  const [open, setOpen] = useState<number | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll(); window.addEventListener("scroll", onScroll); return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-center gap-8 py-32 px-16 bg-white dark:bg-black">
-        <svg
-          viewBox="0 0 69 26"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="fill-black dark:fill-white"
-        >
-          <path d="M13.7917 24.3604C12.4622 25.3549 10.7895 25.8884 8.82032 25.8884C6.66971 25.8884 4.87412 25.3543 3.47587 24.3604H13.7917Z"></path>
-          <path d="M27.8204 24.3604C26.802 25.2894 25.534 25.8884 24.1756 25.8884C22.4188 25.8884 21.02 25.339 20.108 24.3604H27.8204Z"></path>
-          <path d="M44.5726 24.3604C43.0194 25.3511 41.0762 25.8884 38.8367 25.8884C36.5972 25.8884 34.6541 25.3511 33.1008 24.3604H44.5726Z"></path>
-          <path d="M6.10452 21.7838C6.64469 22.5408 7.32257 23.0964 8.12748 23.4234H2.40008C1.94592 22.9414 1.55318 22.3936 1.22435 21.7838H6.10452Z"></path>
-          <path d="M15.9753 21.7838C15.6457 22.3936 15.2602 22.9415 14.8213 23.4234H11.8608C12.7015 23.0973 13.4264 22.543 14.0227 21.7838H15.9753Z"></path>
-          <path d="M23.2016 21.7838C23.3205 22.5267 23.6272 23.0906 24.0875 23.4234H19.4507C19.2008 22.9377 19.0348 22.3887 18.9611 21.7838H23.2016Z"></path>
-          <path d="M29.6415 21.7838C29.3929 22.3649 29.0672 22.9198 28.6798 23.4234H26.2913C26.809 23.0921 27.2884 22.5303 27.6965 21.7838H29.6415Z"></path>
-          <path d="M34.7756 21.7838C35.1876 22.498 35.7076 23.0447 36.3327 23.4234H31.8901C31.3725 22.9406 30.9182 22.3925 30.5327 21.7838H34.7756Z"></path>
-          <path d="M47.1403 21.7838C46.7548 22.3925 46.3005 22.9406 45.7829 23.4234H41.3477C41.9765 23.0447 42.5011 22.4979 42.9178 21.7838H47.1403Z"></path>
-          <path d="M4.97293 19.2072C5.1237 19.8073 5.31836 20.3552 5.55486 20.8468H0.788749C0.585257 20.3346 0.420002 19.7875 0.293988 19.2072H4.97293Z"></path>
-          <path d="M16.9458 19.2072C16.8042 19.7876 16.6278 20.3347 16.4179 20.8468H14.6376C14.9063 20.3562 15.1356 19.8083 15.3244 19.2072H16.9458Z"></path>
-          <path d="M23.146 20.8468H18.9172V19.2072H23.146V20.8468Z"></path>
-          <path d="M33.879 19.2072C33.9937 19.8097 34.1454 20.3562 34.3337 20.8468H30.0171C30.0067 20.8251 29.9961 20.8035 29.9859 20.7817C29.9802 20.8034 29.9741 20.8251 29.9682 20.8468H28.1326C28.3289 20.3505 28.4984 19.8012 28.6354 19.2072H33.879Z"></path>
-          <path d="M48.2582 19.2072C48.1017 19.7867 47.8998 20.3339 47.6561 20.8468H43.3651C43.5558 20.3562 43.71 19.8097 43.8264 19.2072H48.2582Z"></path>
-          <path d="M4.61127 16.6306C4.63883 17.207 4.69545 17.7543 4.78 18.2703H0.128844C0.056725 17.7466 0.0134713 17.1997 0 16.6306H4.61127Z"></path>
-          <path d="M17.2781 17.2464C17.2423 17.5969 17.1958 17.9383 17.1392 18.2703H15.5758C15.6704 17.8506 15.7479 17.4096 15.8073 16.9484L17.2781 17.2464Z"></path>
-          <path d="M23.146 18.2703H18.9172V16.6306H23.146V18.2703Z"></path>
-          <path d="M33.6225 16.6306C33.6374 17.2111 33.6755 17.7576 33.7361 18.2703H28.8183C28.902 17.7493 28.9618 17.2012 28.9946 16.6306H33.6225Z"></path>
-          <path d="M48.643 16.6306C48.6191 17.199 48.5595 17.7459 48.4664 18.2703H43.9719C44.0335 17.7576 44.072 17.211 44.0873 16.6306H48.643Z"></path>
-          <path d="M23.146 6.89115H28.9193V8.56739H23.146V15.6937H18.9172V8.56739H15.8592L16.4324 14.49L14.9983 14.6762C14.0055 9.75933 13.1963 8.00865 9.8132 7.85966C6.45181 7.85968 4.61542 10.5441 4.592 15.6937H0.00268892C0.175472 9.48821 3.32011 6.14613 8.93079 6.14613C9.77653 6.14614 10.7326 6.25781 11.8725 6.51853C13.152 6.78855 14.2702 6.89115 15.697 6.89115C19.7286 6.89112 21.3074 4.20914 22.0796 0H23.146V6.89115Z"></path>
-          <path d="M38.8367 6.14613C44.6383 6.14616 48.4971 9.86614 48.6497 15.6937H44.092C44.0101 10.6034 42.1785 7.97132 38.8367 7.97128C35.5308 7.97128 33.6998 10.6034 33.618 15.6937H29.0235C29.1761 9.86611 33.0351 6.14613 38.8367 6.14613Z"></path>
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M58.5142 19.14C59.5559 19.14 60.9024 19.5091 60.9532 22.5701H58.3236C57.7138 22.5701 57.3201 22.734 57.3709 23.3763C57.5233 25.2074 57.9934 25.385 58.6413 25.385C59.3145 25.385 59.937 25.18 60.2545 23.9229C60.28 23.8546 60.4706 23.8545 60.5468 23.8545C60.6103 23.8545 60.8389 23.8546 60.8135 23.9229C60.4197 25.6993 59.6702 26 58.6413 26C57.5996 26 55.9862 25.631 55.9862 22.5701C55.9862 19.4954 57.536 19.14 58.5142 19.14ZM58.5142 19.5773C57.9044 19.5773 57.4217 19.9736 57.3455 22.0917H59.5813C59.5051 19.9737 59.1367 19.5773 58.5142 19.5773Z"
-          ></path>
-          <path d="M63.258 19.2631C63.3215 19.2631 63.3342 19.4543 63.3342 19.509C63.3342 19.55 63.3216 19.7276 63.258 19.7276C62.6737 19.7276 62.7118 20.083 62.8262 20.5066C62.9913 21.1899 63.5121 22.9663 63.6137 23.4309C63.6391 23.5676 63.7662 23.5539 63.817 23.4309L65.0238 20.1786C65.0365 20.124 65.1763 20.124 65.2525 20.124C65.3287 20.124 65.4685 20.124 65.4939 20.1786L66.6625 23.4309C66.7006 23.5539 66.8404 23.5539 66.8658 23.4309L67.6661 20.5203C67.7931 20.083 67.8186 19.7276 67.2342 19.7276C67.1834 19.7276 67.1707 19.5773 67.1707 19.509C67.1707 19.427 67.1834 19.2631 67.2342 19.2631H68.9238C68.9746 19.2631 69 19.427 69 19.509C69 19.5773 68.9746 19.7276 68.9238 19.7276C68.3903 19.7276 68.2378 20.1239 68.1235 20.5339C67.9965 20.9438 66.5613 25.8484 66.5482 25.9043C66.5228 25.959 66.4339 25.959 66.3704 25.959C66.3069 25.959 66.2179 25.9317 66.2052 25.9043C66.1036 25.426 65.0619 22.6247 64.9222 22.1054C64.9095 21.9824 64.7443 21.9824 64.7062 22.1191C64.6554 22.2286 63.3347 25.8485 63.3216 25.9043C63.3089 25.959 63.2326 25.959 63.1564 25.959C63.0802 25.959 63.004 25.959 62.9786 25.9043L61.4033 20.5339C61.2763 20.0693 61.1111 19.7276 60.5649 19.7276C60.5268 19.7276 60.5014 19.591 60.5014 19.509C60.5014 19.4133 60.5268 19.2631 60.5649 19.2631H63.258Z"></path>
-          <path d="M53.2441 19.1264C54.0064 19.1264 55.2766 19.3724 55.2766 21.2718V24.5105C55.2766 24.9204 55.3275 25.3167 55.8991 25.3167C55.9499 25.3167 55.9627 25.4807 55.9627 25.549C55.9627 25.631 55.9499 25.795 55.8991 25.795H53.2823C53.2441 25.795 53.2187 25.6584 53.2187 25.5627C53.2187 25.4671 53.2314 25.3167 53.2823 25.3167C53.8666 25.3167 53.892 24.9204 53.892 24.5105V21.5178C53.892 19.9053 53.4347 19.8507 53.0536 19.8507C52.4184 19.8507 52.2024 20.3699 52.0119 20.7525V24.5105C52.0119 24.9341 52.0627 25.3167 52.6598 25.3167C52.7106 25.3167 52.7233 25.508 52.7233 25.549C52.7233 25.6037 52.6979 25.795 52.6598 25.795H49.8777C49.8269 25.795 49.8015 25.6583 49.8015 25.549C49.8015 25.4671 49.8269 25.3168 49.8777 25.3167C50.6526 25.3167 50.7034 24.9068 50.7034 24.5105V20.5476C50.7034 20.0693 50.5764 19.7413 49.8777 19.7413C49.8269 19.7413 49.8015 19.6047 49.8015 19.4954C49.8015 19.3861 49.8269 19.2631 49.8777 19.2631H51.6308C51.8213 19.2631 51.9611 19.3314 51.9992 19.673C52.0119 19.7687 52.0754 19.796 52.1389 19.7276C52.3422 19.4817 52.6598 19.1264 53.2441 19.1264Z"></path>
-          <path d="M48.0394 25.9621H46.8V24.629H48.0394V25.9621Z"></path>
-        </svg>
-        <div className="flex flex-col items-center text-center">
-          <h1 className="max-w-xs text-2xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            Ready for your first task
-          </h1>
-        </div>
-      </main>
-    </div>
+    <main>
+      <header className={`nav ${scrolled ? "nav-solid" : ""}`}>
+        <a className="brand" href="#top">ÉLORIA</a>
+        <nav className={menu ? "shown" : ""}>
+          <a href="#shop">Shop</a><a href="#story">Our story</a><a href="#personalize">Personalize</a><a href="#journal">Journal</a>
+        </nav>
+        <div className="nav-actions"><button onClick={() => setCart(true)} aria-label="Open cart" className="bag">Bag <sup>0</sup></button><button className="menu" onClick={() => setMenu(!menu)} aria-label="Toggle menu"><i /><i /></button></div>
+      </header>
+
+      <section className="hero" id="top">
+        <div className="hero-copy reveal"><p className="eyebrow">PERSONAL GIFTS, THOUGHTFULLY MADE</p><h1>Some memories<br />deserve to <em>stay close.</em></h1><p className="sub">A photo. A feeling. A gift made just for them.</p><a className="link-arrow" href="#personalize">Create your memory <Arrow /></a></div>
+        <div className="hero-art" aria-label="A personal locket on a silk ribbon"><div className="sun" /><div className="hero-image" /><div className="product-orbit"><span>ÉLORIA</span><span>· MADE FOR YOUR MEMORIES ·</span></div></div>
+        <p className="scroll-note">SCROLL TO REMEMBER <span>↓</span></p>
+      </section>
+
+      <section className="manifesto"><p className="eyebrow">OUR POINT OF VIEW</p><h2>One photo.<br /><em>One memory.</em><br />Forever.</h2><p>ÉLORIA turns the moments you never want to lose into gifts you can keep close.</p><div className="manifesto-line" /></section>
+
+      <section className="story section-grid" id="story"><div className="story-image image-hover"><div className="caption">01 / THE IDEA</div></div><div className="story-copy"><p className="eyebrow">THE IDEA</p><h2>It’s not just jewelry.<br /><em>It’s a memory.</em></h2><p>Designed around your photo, made to carry a feeling wherever life takes you.</p><a className="link-arrow" href="#shop">Discover our story <Arrow /></a></div></section>
+
+      <section className="steps" id="personalize"><div className="steps-intro"><p className="eyebrow">MADE FOR YOUR MEMORY</p><h2>Your photo.<br /><em>Your story.</em><br />Your gift.</h2></div><div className="steps-list">{[["01","Choose your photo","The glances, the adventures, the people you never want to forget."],["02","We create your piece","Made with care in our atelier, around the moment that is yours."],["03","Give them the memory","A gift that carries more than words ever could."]].map(([n,t,d])=><article className="step" key={n}><span>{n}</span><div><h3>{t}</h3><p>{d}</p></div><Arrow /></article>)}</div></section>
+
+      <section className="signature" id="shop"><div className="signature-copy"><p className="eyebrow">THE SIGNATURE PIECE</p><h2>A keepsake,<br /><em>made personal.</em></h2><p>Minimal. Meaningful. Made for them.</p><button onClick={() => setCart(true)} className="dark-button">Discover ÉLORIA <Arrow /></button></div><div className="signature-art"><div className="signature-photo" /><div className="round-label">MADE FOR · YOUR MEMORIES ·</div><p>THE MEMENTO LOCKET<br /><strong>from €89</strong></p></div></section>
+
+      <section className="gifting"><div className="gift-image image-hover" /><div className="gift-copy"><p className="eyebrow">THE GIFT THAT SAYS IT ALL</p><h2>Some gifts are opened.<br /><em>Others are remembered.</em></h2><p>Each piece arrives in our signature presentation box, ready to become part of the moment.</p><a className="link-arrow" href="#shop">Explore the collection <Arrow /></a></div></section>
+
+      <section className="reviews"><div className="review-head"><p className="eyebrow">NOTES FROM YOU</p><h2>Held <em>close.</em></h2><p>Words from our future community.<br />Clearly labelled placeholders until verified reviews are collected.</p></div><div className="review-grid">{reviews.map(r=><article className="review" key={r.name}><div className="stars">★★★★★</div><p>“{r.quote}”</p><div className="reviewer"><img src={r.image} alt="" /><span>{r.name}<small>PLACEHOLDER REVIEW</small></span></div></article>)}</div></section>
+
+      <section className="faq"><p className="eyebrow">THE DETAILS</p><h2>Questions,<br /><em>answered.</em></h2><div className="faq-list">{faqs.map((f,i)=><button className="faq-item" key={f} onClick={()=>setOpen(open===i?null:i)}><span>{f}</span><b>{open===i?"−":"+"}</b>{open===i&&<small>Our team will make every detail simple and thoughtful. Full guidance will be available with your order.</small>}</button>)}</div></section>
+
+      <section className="closing"><div className="closing-image" /><div className="closing-content"><p className="eyebrow">A MOMENT, KEPT</p><h2>Keep what<br />matters <em>close.</em></h2><p>Made for your memories.</p><a href="#personalize" className="light-button">Create your memory <Arrow /></a></div></section>
+      <footer><a className="brand" href="#top">ÉLORIA</a><p>Made for your memories.</p><div><a href="#shipping">Shipping & returns</a><a href="#faq">Care guide</a><a href="#journal">Instagram</a></div><small>© 2025 ÉLORIA. All rights reserved.</small></footer>
+      {cart && <aside className="cart"><button onClick={()=>setCart(false)} aria-label="Close cart">×</button><p className="eyebrow">YOUR BAG</p><h2>Your memories<br />are waiting.</h2><p className="empty">Your bag is currently empty.</p><a className="dark-button" href="#shop" onClick={()=>setCart(false)}>Explore pieces <Arrow /></a></aside>}
+      {cart && <div className="scrim" onClick={()=>setCart(false)} />}
+    </main>
   );
 }
