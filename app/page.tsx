@@ -27,10 +27,10 @@ export default function Home() {
           <h1>Some memories<br /><em>deserve to stay close.</em></h1>
           <p className="hero-text">Un bijou pensé autour d'une photo qui compte. Une façon élégante de garder une personne, un moment ou un amour près de soi.</p>
           <div className="hero-actions">
-            <a href="#collection" className="button button-dark">Créer mon souvenir <span>↗</span></a>
+            <a href="/products/collier-souvenir" className="button button-dark">Créer mon souvenir <span>↗</span></a>
             <a href="#story" className="text-link">Découvrir ÉLORIA</a>
           </div>
-          <div className="hero-trust"><span>★★★★★</span> Déjà choisi pour des milliers de souvenirs</div>
+          <div className="hero-trust"><span>★★★★★</span> Pensé pour les cadeaux qui comptent</div>
         </div>
         <div className="hero-visual">
           <div className="orb orb-one" />
@@ -74,7 +74,7 @@ export default function Home() {
         <div className="product-info">
           <p className="eyebrow">COLLECTION SIGNATURE</p>
           <h2>Le Collier Souvenir</h2>
-          <div className="rating">★★★★★ <span>4,9/5 · avis vérifiés</span></div>
+          <div className="rating">★★★★★ <span>Collection signature</span></div>
           <p className="price">34,90 €</p>
           <p className="description">Votre photo devient le cœur secret d'un bijou minimaliste. À porter tous les jours ou à offrir pour une occasion qui mérite plus qu'un cadeau ordinaire.</p>
 
@@ -99,7 +99,7 @@ export default function Home() {
           <p className="eyebrow">THE REVEAL</p>
           <h2>Le plus beau moment,<br /><em>c'est quand il découvre.</em></h2>
           <p>Un geste simple. Une surprise personnelle. Un souvenir qui devient un objet à garder.</p>
-          <a href="#gifting" className="button button-light">Voir les idées cadeaux</a>
+          <a href="/products/collier-souvenir" className="button button-light">Voir les idées cadeaux</a>
         </div>
         <div className="reveal-pendant"><div>✦</div></div>
       </section>
@@ -117,11 +117,11 @@ export default function Home() {
       </section>
 
       <section className="reviews">
-        <p className="eyebrow">ILS L'ONT OFFERT</p>
+        <p className="eyebrow">L'INTENTION ÉLORIA</p>
         <div className="review-grid">
-          <blockquote>“Le bijou est encore plus beau en vrai. La réaction de ma mère valait largement le cadeau.”<footer>— Camille · Achat vérifié</footer></blockquote>
-          <blockquote>“Simple, élégant et surtout très personnel. C'était exactement ce que je cherchais.”<footer>— Sarah · Achat vérifié</footer></blockquote>
-          <blockquote>“L'ouverture du coffret a fait son effet. On garde le souvenir pour toujours.”<footer>— Thomas · Achat vérifié</footer></blockquote>
+          <blockquote>“Un cadeau pensé autour d’une photo qui compte.”<footer>— ÉLORIA · manifeste de marque</footer></blockquote>
+          <blockquote>“Un objet discret, personnel, fait pour accompagner un souvenir.”<footer>— ÉLORIA · manifeste de marque</footer></blockquote>
+          <blockquote>“Un cadeau qui raconte une histoire plutôt qu’un simple produit.”<footer>— ÉLORIA · manifeste de marque</footer></blockquote>
         </div>
       </section>
 
