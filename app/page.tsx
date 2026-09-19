@@ -18,7 +18,7 @@ export default function Home() {
           <a href="#story">Notre histoire</a>
           <a href="#gifting">Offrir</a>
         </nav>
-        <button className="nav-cart">Panier <span>0</span></button>
+        <Link href="/cart" className="nav-cart">Panier <span>0</span></Link>
       </header>
 
       <section className="hero">
@@ -128,7 +128,7 @@ export default function Home() {
       <section className="final-cta">
         <p className="eyebrow">MADE FOR YOUR MEMORIES</p>
         <h2>Les souvenirs<br /><em>qui restent près de vous.</em></h2>
-        <a href="#collection" className="button button-light">Créer mon souvenir <span>↗</span></a>
+        <a href="/products/collier-souvenir" className="button button-light">Créer mon souvenir <span>↗</span></a>
       </section>
 
       <footer className="footer">
