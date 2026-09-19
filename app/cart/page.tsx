@@ -30,7 +30,7 @@ export default function CartPage() {
               ))}
               <button className="clear-cart" onClick={clear}>Vider le panier</button>
             </div>
-            <aside className="cart-summary"><p className="eyebrow">RÉCAPITULATIF</p><div><span>Sous-total</span><strong>{money(subtotal)}</strong></div><div><span>Livraison</span><span>{subtotal >= 49 ? "Offerte" : "Calculée à l'étape suivante"}</span></div><hr /><div className="summary-total"><span>Total</span><strong>{money(subtotal)}</strong></div><button className="checkout-button" disabled>Passer au paiement <span>→</span></button><small>Le paiement sera activé lorsque la solution de paiement sera connectée.</small></aside>
+            <aside className="cart-summary"><p className="eyebrow">RÉCAPITULATIF</p><div><span>Sous-total</span><strong>{money(subtotal)}</strong></div><div><span>Livraison</span><span>{subtotal >= 49 ? "Offerte" : "Calculée à l'étape suivante"}</span></div><hr /><div className="summary-total"><span>Total</span><strong>{money(subtotal)}</strong></div><Link href="/checkout" className="checkout-button">Passer au paiement <span>→</span></Link><small>Le paiement sera activé après connexion de Stripe ou Shopify.</small></aside>
           </div>
         )}
       </section>
