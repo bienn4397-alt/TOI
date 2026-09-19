@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEvent, useState } from "react";
+import { useCart } from "@/components/CartProvider";
 
 const offers = [
   { id: "one", title: "1 collier", subtitle: "Le choix essentiel", price: 34.9, old: null },
@@ -17,6 +18,7 @@ export default function ProductConfigurator() {
   const [photo, setPhoto] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const { addItem } = useCart();
 
   const selected = offers.find((item) => item.id === offer) ?? offers[1];
 
@@ -81,12 +83,12 @@ export default function ProductConfigurator() {
           </div>
         </div>
 
-        <button className="config-add" type="button" onClick={() => setAdded(true)}>
+        <button className="config-add" type="button" onClick={() => { addItem({ id: `collier-${offer}-${photo ? "photo" : "sans-photo"}`, title: "Le Collier Souvenir", offer: selected.title, price: selected.price, quantity, photo }); setAdded(true); }}>
           <span>{added ? "Ajouté au panier ✓" : "Ajouter au panier"}</span>
           <span>{money(selected.price * quantity)} →</span>
         </button>
 
-        {added && <div className="added-message">Votre configuration est prête. Le paiement devra être connecté à votre solution e-commerce avant la mise en ligne.</div>}
+        {added && <div className="added-message">Votre configuration a été ajoutée au panier.</div>}
 
         <div className="config-reassurance">
           <span>✓ Paiement sécurisé</span><span>✓ Livraison suivie</span><span>✓ Support client</span>
